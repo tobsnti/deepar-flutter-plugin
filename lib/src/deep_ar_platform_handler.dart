@@ -244,7 +244,7 @@ class DeepArPlatformHandler {
   }
 
   Future<void> destroyIos(int view) {
-    return _avCameraChannel(view).invokeMethod<bool>("destroy");
+    return _avCameraChannel(view).invokeMethod<String?>("destroy");
   }
 
   Future<void> switchEffectWithSlot(
