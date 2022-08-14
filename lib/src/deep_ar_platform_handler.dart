@@ -240,7 +240,7 @@ class DeepArPlatformHandler {
   }
 
   Future<void> destroy() {
-    return _channel.invokeMethod<bool>("destroy");
+    return _channel.invokeMethod<String?>("destroy");
   }
 
   Future<void> destroyIos(int view) {

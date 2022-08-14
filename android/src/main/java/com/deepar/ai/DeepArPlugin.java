@@ -226,6 +226,7 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
                 break;
             case "destroy":
                 deepAR.release();
+                result.success("SHUTDOWN");
                 break;
         }
 
