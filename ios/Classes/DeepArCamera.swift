@@ -297,6 +297,10 @@ class DeepARCameraView: NSObject, FlutterPlatformView, DeepARDelegate {
         videoResult(callerResponse: DeepArResponse.videoCompleted, message: "video completed")
     }
     
+    func didFinishShutdown (){
+        NSLog("didFinishShutdown!!!!!")
+    }
+    
     func didTakeScreenshot(_ screenshot: UIImage!) {
         if let data = screenshot.pngData() {
             
