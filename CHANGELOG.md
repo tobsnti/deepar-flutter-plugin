@@ -1,3 +1,8 @@
+## 0.0.2
+
+- Fix crash on destroy()
+- Added support for DeepAR SDK to work when navigating through different pages.
+
 ## 0.0.1
 
 
