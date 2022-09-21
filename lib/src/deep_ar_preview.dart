@@ -17,11 +17,9 @@ class DeepArPreview extends StatefulWidget {
 class _DeepArPreviewState extends State<DeepArPreview> {
   @override
   Widget build(BuildContext context) {
-    return widget.deepArController.isInitialized
-        ? Platform.isAndroid
-            ? _androidView()
-            : _iOSView()
-        : Container();
+    return Platform.isAndroid
+        ? (widget.deepArController.isInitialized ? _androidView() : Container())
+        : _iOSView();
   }
 
   Widget _iOSView() {
