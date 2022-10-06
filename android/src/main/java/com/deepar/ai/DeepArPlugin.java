@@ -224,10 +224,6 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
                     deepAR.changeParameterFloat(gameObject, component, parameter, ((Double) newParameter).floatValue());
                 }
                 break;
-            case "destroy":
-                deepAR.release();
-                result.success("SHUTDOWN");
-                break;
         }
 
 

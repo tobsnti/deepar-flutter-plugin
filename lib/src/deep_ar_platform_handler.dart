@@ -239,8 +239,8 @@ class DeepArPlatformHandler {
         false;
   }
 
-  Future<void> destroy() {
-    return _channel.invokeMethod<String?>("destroy");
+  Future<String?> destroy() async {
+    return await _cameraXChannel.invokeMethod<String?>("destroy");
   }
 
   Future<void> destroyIos(int view) {
