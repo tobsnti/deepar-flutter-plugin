@@ -39,7 +39,7 @@ public class CameraXHandler implements MethodChannel.MethodCallHandler {
     }
 
     final private Activity activity;
-    final private DeepAR deepAR;
+    private DeepAR deepAR;
     private final long textureId;
     private ProcessCameraProvider processCameraProvider;
     private ListenableFuture<ProcessCameraProvider> future;
@@ -67,6 +67,10 @@ public class CameraXHandler implements MethodChannel.MethodCallHandler {
             case "toggle_flash":
                 boolean isFlash= toggleFlash();
                 result.success(isFlash);
+                break;
+            case "destroy":
+                destroy();
+                result.success("SHUTDOWN");
                 break;
         }
     }
@@ -203,6 +207,19 @@ public class CameraXHandler implements MethodChannel.MethodCallHandler {
             }
         }, executor);
 
+    }
+
+    private void destroy(){
+        ProcessCameraProvider cameraProvider = null;
+        try {
+            cameraProvider = future.get();
+            cameraProvider.unbindAll();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        deepAR.setAREventListener(null);
+        deepAR.release();
+        deepAR = null;
     }
 
     private int getScreenOrientation() {
