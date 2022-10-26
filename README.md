@@ -33,7 +33,14 @@ Also add the following permission requests in your AndroidManifest.xml
 <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 <uses-permission android:name="Manifest.permission.CAPTURE_AUDIO_OUTPUT"  />
 ```
- 
+
+
+Ensure to add these rules to `proguard-rules.pro` else app might crash in release build
+```
+-keepclassmembers class ai.deepar.ar.DeepAR { *; }
+-keepclassmembers class ai.deepar.ar.core.videotexture.VideoTextureAndroidJava { *; }
+-keep class ai.deepar.ar.core.videotexture.VideoTextureAndroidJava
+``` 
 
 **iOS:**
 1. Ensure your app iOS deployment version is 13.0+.

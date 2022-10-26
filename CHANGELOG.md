@@ -1,6 +1,9 @@
 ## 0.0.3
 
 - You can now apply effects, filter etc on startup by calling `switchEffect` method inside the newly added `onViewCreated` callback of `DeepArPreview` class.
+- iOS Camera green indicator now turns off once `destroy` is called.
+- `destroy` method updated in Android which prevents black screen, crashes on multi-page apps.
+- 
 
 ## 0.0.2
 
