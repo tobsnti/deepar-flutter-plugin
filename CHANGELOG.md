@@ -1,3 +1,7 @@
+## 0.0.3
+
+- You can now apply effects, filter etc on startup by calling `switchEffect` method inside the newly added `onViewCreated` callback of `DeepArPreview` class.
+
 ## 0.0.2
 
 - Fix crash on destroy()

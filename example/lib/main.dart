@@ -85,14 +85,17 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
-     body: Stack(
+    return Scaffold(
+        body: Stack(
       children: [
-        _controller.isInitialized
-            ? DeepArPreview(_controller)
-            : const Center(
-                child: Text("Loading..."),
-              ),
+        DeepArPreview(
+          _controller,
+          onViewCreated: () {
+            // set any initial effect, filter etc
+            // _controller.switchEffect(
+            //     _assetEffectsPath + 'viking_helmet.deepar');
+          },
+        ),
         _topMediaOptions(),
         _bottomMediaOptions(),
       ],
