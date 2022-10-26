@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import java.io.IOException;
 import java.io.InputStream;
+import android.graphics.BitmapFactory;
 
 import ai.deepar.ar.ARErrorType;
 import ai.deepar.ar.AREventListener;
