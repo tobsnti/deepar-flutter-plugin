@@ -92,7 +92,7 @@ class DeepArController {
       assert(iosLicenseKey != null, "iosLicenseKey missing");
       _imageSize = iOSImageSizeFromResolution(resolution);
       _aspectRatio = _imageSize!.width / _imageSize!.height;
-      _textureId = -1;
+      //_textureId = -1;
       return true;
     } else {
       throw ("Platform not supported");

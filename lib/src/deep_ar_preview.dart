@@ -4,33 +4,33 @@ import 'package:flutter/material.dart';
 import 'deep_ar_controller.dart';
 
 /// Displays live preview with desired effects.
-class DeepArPreview extends StatelessWidget {
-  const DeepArPreview(this.deepArController, {Key? key}) : super(key: key);
+class DeepArPreview extends StatefulWidget {
+  const DeepArPreview(this.deepArController, {Key? key, this.onViewCreated})
+      : super(key: key);
   final DeepArController deepArController;
+  final Function? onViewCreated;
 
   @override
+  State<DeepArPreview> createState() => _DeepArPreviewState();
+}
+
+class _DeepArPreviewState extends State<DeepArPreview> {
+  @override
   Widget build(BuildContext context) {
-    return deepArController.isInitialized
-        ? Platform.isAndroid
-            ? deepArController.buildPreview()
-            : _DeepArIosPreview(deepArController)
-        : Container();
+    return Platform.isAndroid
+        ? (widget.deepArController.isInitialized ? _androidView() : Container())
+        : _iOSView();
   }
-}
 
-class _DeepArIosPreview extends StatefulWidget {
-  final DeepArController deepArController;
-  const _DeepArIosPreview(this.deepArController, {Key? key}) : super(key: key);
-
-  @override
-  State<_DeepArIosPreview> createState() => __DeepArIosPreviewState();
-}
-
-class __DeepArIosPreviewState extends State<_DeepArIosPreview> {
-  @override
-  Widget build(BuildContext context) {
+  Widget _iOSView() {
     return widget.deepArController.buildPreview(oniOSViewCreated: () {
+      widget.onViewCreated?.call();
       setState(() {});
     });
+  }
+
+  Widget _androidView() {
+    widget.onViewCreated?.call();
+    return widget.deepArController.buildPreview();
   }
 }
