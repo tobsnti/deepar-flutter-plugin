@@ -222,6 +222,16 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
                 }
                 else if (newParameter instanceof Double){
                     deepAR.changeParameterFloat(gameObject, component, parameter, ((Double) newParameter).floatValue());
+                } 
+                else if (newParameter instanceof String) {
+                    try {
+                        InputStream inputStream = _getAssetFileInputStream((String) newParameter);
+                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                        deepAR.changeParameterTexture(gameObject, component, parameter, bitmap);
+                        inputStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
         }
