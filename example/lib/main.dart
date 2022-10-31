@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:deepar_flutter/deep_ar.dart';
+import 'package:deepar_flutter/deepar_flutter.dart';
 import 'dart:convert';
 
 import 'package:open_file/open_file.dart';
@@ -85,16 +85,21 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final deviceRatio = size.width / size.height;
     return Scaffold(
         body: Stack(
       children: [
-        DeepArPreview(
-          _controller,
-          onViewCreated: () {
-            // set any initial effect, filter etc
-            // _controller.switchEffect(
-            //     _assetEffectsPath + 'viking_helmet.deepar');
-          },
+        Transform.scale(
+          scale: (1 / _controller.aspectRatio) / deviceRatio,
+          child: DeepArPreview(
+            _controller,
+            onViewCreated: () {
+              // set any initial effect, filter etc
+              // _controller.switchEffect(
+              //     _assetEffectsPath + 'viking_helmet.deepar');
+            },
+          ),
         ),
         _topMediaOptions(),
         _bottomMediaOptions(),
@@ -218,9 +223,17 @@ class _HomeState extends State<Home> {
             const SizedBox(width: 20),
             IconButton(
                 onPressed: () {
-                  _controller.takeScreenshot().then((file) {
-                    OpenFile.open(file.path);
-                  });
+                  try {
+                    _controller.takeScreenshot().then((file) {
+                      OpenFile.open(file.path);
+                    });
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Photo Capture Failed',
+                          style: TextStyle(color: Colors.white)),
+                      backgroundColor: Colors.red,
+                    ));
+                  }
                 },
                 color: Colors.white70,
                 iconSize: 40,
