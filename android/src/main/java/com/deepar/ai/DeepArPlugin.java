@@ -122,8 +122,10 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
                     InputStream inputStream = _getAssetFileInputStream(effect);
                     deepAR.switchEffect("effect", inputStream);
                     inputStream.close();
+                    result.success("switchEffect called successfully");
                 } catch (IOException e) {
                     e.printStackTrace();
+                    result.error("111", "switchEffect failed", e.getMessage());
                 }
                 break;
 
@@ -132,19 +134,20 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
                     File file = File.createTempFile("deepar_", ".mp4");
                     videoFilePath = file.getPath();
                     deepAR.startVideoRecording(videoFilePath);
+                    result.success("Video recording started");
                 
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.e("DeepAR", "Error : Unable to create file");
                     videoResult(DeepArResponse.videoError, "Exception while creating file");
+                    result.error("111", "Video recording failed", e.getMessage());
                 }
-                result.success("STARTING_TO_RECORD");
 
                 break;
 
             case MethodStrings.stopRecordingVideo:
-                deepAR.stopVideoRecording();
-               result.success("STOPPING_RECORDING");
+                 deepAR.stopVideoRecording();
+                 result.success("STOPPING_RECORDING");
                 break;
             case "take_screenshot":
                 deepAR.takeScreenshot();
@@ -155,29 +158,36 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
                 String mask = ((String) arguments.get("effect"));
                 if (mask == null || mask.equals("null")) {
                     deepAR.switchEffect("mask", "null");
+                    result.success("switchMask called & reset success");
                     return;
                 }
                 try {
                     InputStream inputStream = _getAssetFileInputStream(mask);
                     deepAR.switchEffect("mask", inputStream);
                     inputStream.close();
+                    result.success("switchMask called successfully");
                 } catch (IOException e) {
                     e.printStackTrace();
+                    result.error("111", "switchMask failed", e.getMessage());
                 }
+                
                 break;
 
             case "switch_filter":
                 String filter = ((String) arguments.get("effect"));
                 if (filter == null || filter.equals("null")){
                     deepAR.switchEffect("filters", "null");
+                    result.success("switchFilter called & reset success");
                     return;
                 }
                 try {
                     InputStream inputStream = _getAssetFileInputStream(filter);
                     deepAR.switchEffect("filters", inputStream);
                     inputStream.close();
+                    result.success("switchFilter called successfully");
                 } catch (IOException e) {
                     e.printStackTrace();
+                    result.error("111", "switchFilter failed", e.getMessage());
                 }
                 break;
             case "switchEffectWithSlot":
@@ -206,30 +216,37 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
                         deepAR.switchEffect(slot, inputStream, face);
                     }
                     inputStream.close();
+                    result.success("switchEffectWithSlot called successfully");
                 } catch (IOException e) {
                     e.printStackTrace();
+                    result.error("111", "switchEffectWithSlot failed", e.getMessage());
                 }
                 break;
             case "fireTrigger":
                 String trigger = ((String) arguments.get("trigger"));
                 deepAR.fireTrigger(trigger);
+                result.success("fireTrigger called successfully");
                 break;
             case "showStats":
                 enabled = ((boolean) arguments.get("enabled"));
                 deepAR.showStats(enabled);
+                result.success("showStats called successfully");
                 break;
             case "simulatePhysics":
                 enabled = ((boolean) arguments.get("enabled"));
                 deepAR.simulatePhysics(enabled);
+                result.success("simulatePhysics called successfully");
                 break;
             case "showColliders":
                 enabled = ((boolean) arguments.get("enabled"));
                 deepAR.showColliders(enabled);
+                result.success("showColliders called successfully");
                 break;
             case "moveGameObject":
                 String selectedGameObjectName = ((String) arguments.get("selectedGameObjectName"));
                 String targetGameObjectName = ((String) arguments.get("targetGameObjectName"));
                 deepAR.moveGameObject(selectedGameObjectName, targetGameObjectName);
+                result.success("moveGameObject called successfully");
                 break;
 
             case "changeParameter":
@@ -247,16 +264,20 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
 
                     if (w == null){
                         deepAR.changeParameterVec3(gameObject, component, parameter, x, y, z);
+                        result.success("changeParameter called successfully");
                     }else{
                         float floatValueW = ((Double) w).floatValue();
                         deepAR.changeParameterVec4(gameObject, component, parameter, x, y, z, floatValueW);
+                        result.success("changeParameter called successfully");
                     }
                 }
                 else if (newParameter instanceof Boolean){
                     deepAR.changeParameterBool(gameObject, component, parameter, (Boolean) newParameter);
+                    result.success("changeParameter called successfully");
                 }
                 else if (newParameter instanceof Double){
                     deepAR.changeParameterFloat(gameObject, component, parameter, ((Double) newParameter).floatValue());
+                    result.success("changeParameter called successfully");
                 } 
                 else if (newParameter instanceof String) {
                     try {
@@ -264,8 +285,10 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
                         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                         deepAR.changeParameterTexture(gameObject, component, parameter, bitmap);
                         inputStream.close();
+                        result.success("changeParameter called successfully");
                     } catch (IOException e) {
                         e.printStackTrace();
+                        result.error("111", "changeParameter failed", e.getMessage());
                     }
                 }
                 break;
