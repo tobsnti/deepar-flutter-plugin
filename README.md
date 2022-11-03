@@ -102,6 +102,8 @@ return  _controller.isInitialized
 		);
 }
 ```
+
+To display the preview in full screen, wrap `DeepArPreview` with `Transform.scale()`. 
        
 3.  Load effect of your choice by passing the asset file to it in `switchPreview`
 ```

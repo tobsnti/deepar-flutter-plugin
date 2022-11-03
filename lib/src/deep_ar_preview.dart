@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'deep_ar_controller.dart';
 
@@ -17,9 +18,14 @@ class DeepArPreview extends StatefulWidget {
 class _DeepArPreviewState extends State<DeepArPreview> {
   @override
   Widget build(BuildContext context) {
-    return Platform.isAndroid
-        ? (widget.deepArController.isInitialized ? _androidView() : Container())
-        : _iOSView();
+    return AspectRatio(
+      aspectRatio: (1 / widget.deepArController.aspectRatio),
+      child: Platform.isAndroid
+          ? (widget.deepArController.isInitialized
+              ? _androidView()
+              : Container())
+          : _iOSView(),
+    );
   }
 
   Widget _iOSView() {

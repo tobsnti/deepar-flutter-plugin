@@ -173,7 +173,7 @@ class DeepArController {
         androidFunction: _deepArPlatformHandler.takeScreenShot,
         iOSFunction: () =>
             _deepArPlatformHandler.takeScreenShotIos(_textureId!));
-    if (_file == "ENDED_WITH_ERROR") throw ("Video capture failed");
+    if (_file == "ENDED_WITH_ERROR") throw ("Screenshot capture failed");
 
     return File(_file!);
   }
