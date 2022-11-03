@@ -364,16 +364,17 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
             //File imageFile = new File(activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "image_" + now + ".jpg");
 
             // TODO: 15/07/22 replace with correct path
-            File imageFile = new File("/storage/emulated/0/Download", "image_" + now + ".jpg");
+            //File imageFile = new File("/storage/emulated/0/Download", "image_" + now + ".jpg");
+            File imageFile = File.createTempFile("image_" + now, ".jpg");
             FileOutputStream outputStream = new FileOutputStream(imageFile);
             int quality = 100;
             bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
             outputStream.flush();
             outputStream.close();
-            MediaScannerConnection.scanFile(activity, new String[]{imageFile.toString()}, null, null);
+            //MediaScannerConnection.scanFile(activity, new String[]{imageFile.toString()}, null, null);
             screenshotPath = imageFile.getPath();
             screenshotResult(DeepArResponse.screenshotTaken, "screenshot taken");
-        } catch (Throwable e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
