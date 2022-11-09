@@ -209,6 +209,13 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
                 }
 
                 try {
+
+                    if (path != null && path.toLowerCase().endsWith("none") ){
+                        deepAR.switchEffect(slot, getResetPath()); // reset applied effect
+                        result.success("switchEffectWithSlot reset success");
+                        return;
+                    }
+
                     InputStream inputStream = _getAssetFileInputStream(path);
                     if (targetGameObject != null && !targetGameObject.isEmpty()){
                         deepAR.switchEffect(slot, inputStream, face, targetGameObject);
@@ -295,6 +302,10 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
         }
 
 
+    }
+
+    private String getResetPath(){
+        return null;
     }
 
     private void setCameraXChannel(CameraResolutionPreset resolutionPreset) {
