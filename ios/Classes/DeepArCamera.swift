@@ -103,18 +103,21 @@ class DeepARCameraView: NSObject, FlutterPlatformView, DeepARDelegate {
             let key = registrar?.lookupKey(forAsset: effect)
             let path = Bundle.main.path(forResource: key, ofType: nil)
             deepAR.switchEffect(withSlot: "effect", path: path)
+            result("switchEffect called successfully")
             
         case "switch_face_mask":
             let mask:String = args?["effect"] as! String
             let key = registrar?.lookupKey(forAsset: mask)
             let path = Bundle.main.path(forResource: key, ofType: nil)
             deepAR.switchEffect(withSlot: "mask", path: path)
+            result("switchFaceMask called successfully")
             
         case "switch_filter":
             let filter:String = args?["effect"] as! String
             let key = registrar?.lookupKey(forAsset: filter)
             let path = Bundle.main.path(forResource: key, ofType: nil)
             deepAR.switchEffect(withSlot: "filters", path: path)
+            result("switchFilter called successfully")
             
         case "switchEffectWithSlot":
             let slot:String = args?["slot"] as! String
@@ -128,6 +131,7 @@ class DeepARCameraView: NSObject, FlutterPlatformView, DeepARDelegate {
             }else{
                 deepAR.switchEffect(withSlot: slot, path: path, face: face)
             }
+            result("switchEffectWithSlot called successfully")
             
             
         case "start_recording_video":
@@ -150,19 +154,24 @@ class DeepARCameraView: NSObject, FlutterPlatformView, DeepARDelegate {
         case "fireTrigger":
             let trigger:String = args?["trigger"] as! String
             deepAR.fireTrigger(trigger)
+            result("fireTrigger called successfully")
         case "showStats":
             let enabled:Bool = args?["enabled"] as! Bool
             deepAR.showStats(enabled)
+            result("showStats called successfully")
         case "simulatePhysics":
             let enabled:Bool = args?["enabled"] as! Bool
             deepAR.simulatePhysics(enabled)
+            result("simulatePhysics called successfully")
         case "showColliders":
             let enabled:Bool = args?["enabled"] as! Bool
             deepAR.showColliders(enabled)
+            result("showColliders called successfully")
         case "moveGameObject":
             let selectedGameObjectName:String = args?["selectedGameObjectName"] as! String
             let targetGameObjectName:String = args?["targetGameObjectName"] as! String
             deepAR.moveGameObject(selectedGameObjectName, targetGameObjectname: targetGameObjectName)
+            result("moveGameObject called successfully")
         case "changeParameter":
             let gameObject:String = args?["gameObject"] as! String
             let component:String = args?["component"] as! String
@@ -193,6 +202,8 @@ class DeepARCameraView: NSObject, FlutterPlatformView, DeepARDelegate {
             else if newParameter is String {
                 deepAR.changeParameter(gameObject, component: component, parameter: parameter, stringValue: newParameter as? String)
             }
+
+            result("changeParameter called successfully")
             
         case "destroy":
             cameraController.stopCamera()

@@ -92,7 +92,7 @@ class DeepArController {
       assert(iosLicenseKey != null, "iosLicenseKey missing");
       _imageSize = iOSImageSizeFromResolution(resolution);
       _aspectRatio = _imageSize!.width / _imageSize!.height;
-      _textureId = -1;
+      //_textureId = -1;
       return true;
     } else {
       throw ("Platform not supported");
@@ -173,7 +173,7 @@ class DeepArController {
         androidFunction: _deepArPlatformHandler.takeScreenShot,
         iOSFunction: () =>
             _deepArPlatformHandler.takeScreenShotIos(_textureId!));
-    if (_file == "ENDED_WITH_ERROR") throw ("Video capture failed");
+    if (_file == "ENDED_WITH_ERROR") throw ("Screenshot capture failed");
 
     return File(_file!);
   }

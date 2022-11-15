@@ -9,7 +9,7 @@ The current version of plugin supports:
 
 | Support |Android  | iOS|
 |--|--|--|
-|  |SDK 21+  |  iOS 13.0+|
+|  |SDK 23+  |  iOS 13.0+|
 
 
 ## Installation
@@ -24,7 +24,7 @@ Please download the native android dependencies from our [downloads](https://dev
 -   `~/.pub-cache/hosted/pub.dartlang.org/deepar_flutter-<plugin-version>/android/libs/deepar.aar`  (Linux/ Mac)
 -   `%LOCALAPPDATA%\Pub\Cache\hosted\pub.dartlang.org\deepar_flutter-<plugin-version>\android\libs\deepar.aar`(Windows)
 -   compileSdkVersion should be 33 or more.
--   minSdkVersion should be 21 or more.
+-   minSdkVersion should be 23 or more.
 
 Also add the following permission requests in your AndroidManifest.xml
 ```
@@ -33,7 +33,14 @@ Also add the following permission requests in your AndroidManifest.xml
 <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 <uses-permission android:name="Manifest.permission.CAPTURE_AUDIO_OUTPUT"  />
 ```
- 
+
+
+Ensure to add these rules to `proguard-rules.pro` else app might crash in release build
+```
+-keepclassmembers class ai.deepar.ar.DeepAR { *; }
+-keepclassmembers class ai.deepar.ar.core.videotexture.VideoTextureAndroidJava { *; }
+-keep class ai.deepar.ar.core.videotexture.VideoTextureAndroidJava
+``` 
 
 **iOS:**
 1. Ensure your app iOS deployment version is 13.0+.
@@ -95,6 +102,8 @@ return  _controller.isInitialized
 		);
 }
 ```
+
+To display the preview in full screen, wrap `DeepArPreview` with `Transform.scale()`. 
        
 3.  Load effect of your choice by passing the asset file to it in `switchPreview`
 ```
