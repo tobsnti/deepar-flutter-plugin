@@ -9,7 +9,7 @@ The current version of plugin supports:
 
 | Support |Android  | iOS|
 |--|--|--|
-|  |SDK 21+  |  iOS 13.0+|
+|  |SDK 23+  |  iOS 13.0+|
 
 
 ## Installation
@@ -24,7 +24,7 @@ Please download the native android dependencies from our [downloads](https://dev
 -   `~/.pub-cache/hosted/pub.dartlang.org/deepar_flutter-<plugin-version>/android/libs/deepar.aar`  (Linux/ Mac)
 -   `%LOCALAPPDATA%\Pub\Cache\hosted\pub.dartlang.org\deepar_flutter-<plugin-version>\android\libs\deepar.aar`(Windows)
 -   compileSdkVersion should be 33 or more.
--   minSdkVersion should be 21 or more.
+-   minSdkVersion should be 23 or more.
 
 Also add the following permission requests in your AndroidManifest.xml
 ```
