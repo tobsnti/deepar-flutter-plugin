@@ -24,11 +24,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
 
 SPEC CHECKSUMS:
-  deepar_flutter: a6e42ee278ea19cdef3a0514f6a02922cb2e4bdb
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  deepar_flutter: 1ffd71abf4a00c8df8a6bb2fa1ba784dbb43ede1
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
 
-PODFILE CHECKSUM: 362ffcc86f0cc9ee0f2ccdcf198693a3cf56f23f
+PODFILE CHECKSUM: 4ac4f8a0213f258358939df5229bdc3e24797d55
 
 COCOAPODS: 1.11.3
