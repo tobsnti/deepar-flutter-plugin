@@ -18,13 +18,9 @@ Please visit our [developer website](https://developer.deepar.ai) to create a pr
 Once done, please add the latest `deepar_flutter` dependency to your pubspec.yaml. 
 
 **Android**: 
-Please download the native android dependencies from our [downloads](https://developer.deepar.ai/downloads) section and save it at two locations:
- 1. In your flutter project as `android/app/libs/deepar.aar`.
- 2. In the root of your flutter environment directory, navigate to deepar_flutter [pub-cache folder](https://dart.dev/tools/pub/cmd/pub-get#the-system-package-cache) and create a new `libs` folder and place the `deepar.aar` file as following:
--   `~/.pub-cache/hosted/pub.dartlang.org/deepar_flutter-<plugin-version>/android/libs/deepar.aar`  (Linux/ Mac)
--   `%LOCALAPPDATA%\Pub\Cache\hosted\pub.dartlang.org\deepar_flutter-<plugin-version>\android\libs\deepar.aar`(Windows)
--   compileSdkVersion should be 33 or more.
--   minSdkVersion should be 23 or more.
+ 1. compileSdkVersion should be 33 or more.
+ 2. minSdkVersion should be 23 or more.
+ 3. Download the native android dependencies from our [downloads](https://developer.deepar.ai/downloads) section and paste it in your flutter project at `android/app/libs/deepar.aar`.
 
 Also add the following permission requests in your AndroidManifest.xml
 ```
@@ -32,6 +28,7 @@ Also add the following permission requests in your AndroidManifest.xml
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 <uses-permission android:name="Manifest.permission.CAPTURE_AUDIO_OUTPUT"  />
+<uses-permission android:name="android.permission.CAMERA" />
 ```
 
 
@@ -44,10 +41,8 @@ Ensure to add these rules to `proguard-rules.pro` else app might crash in releas
 
 **iOS:**
 1. Ensure your app iOS deployment version is 13.0+.
-2. Download the DeepAR iOS binaries from [here](https://developer.deepar.ai/downloads).  
-3. Copy the `DeepAR.xcframework` file from `/lib` folder of the downloaded file and paste as `/ios/DeepAR.xcframework` in the plugin's directory. Please use the pub-cache folder reference as mentioned in android section.
-4. Do a flutter clean & install pods again.
-5. To handle camera and microphone permissions, please add the following strings to your info.plist.
+2. Do a flutter clean & install pods.
+3. To handle camera and microphone permissions, please add the following strings to your info.plist.
 ```
 <key>NSCameraUsageDescription</key>
 <string>---Reason----</string>
