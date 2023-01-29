@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'deepar_flutter'
-  s.version          = '0.0.1'
+  s.version          = '0.0.5'
   s.summary          = 'Offical Flutter SDK for DeepAR Plugin.'
   s.description      = <<-DESC
 Official Flutter SDK for DeepAR Plugin.
@@ -22,7 +22,7 @@ Official Flutter SDK for DeepAR Plugin.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.swift_version = '5.0'
 
-  s.preserve_paths = 'DeepAR.xcframework/**/*'
+  s.preserve_paths = 'DeepAR.framework/**/*'
   s.xcconfig = { 'OTHER_LDFLAGS' => '-framework DeepAR' }
-  s.vendored_frameworks = 'DeepAR.xcframework'
+  s.vendored_frameworks = 'DeepAR.framework'
 end
