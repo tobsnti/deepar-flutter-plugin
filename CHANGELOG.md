@@ -1,3 +1,7 @@
+## 0.0.5
+
+- Minor bug fixes.
+
 ## 0.0.4
 
 - Simplified plugin installation process.
