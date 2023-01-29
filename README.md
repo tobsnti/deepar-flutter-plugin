@@ -98,7 +98,7 @@ return  _controller.isInitialized
 }
 ```
 
-To display the preview in full screen, wrap `DeepArPreview` with `Transform.scale()`. 
+To display the preview in full screen, wrap `DeepArPreview` with `Transform.scale()` and use the correct scale factor as per preview area size. More info [here](https://github.com/DeepARSDK/deepar-flutter-plugin/issues/61#issuecomment-1331683622).
        
 3.  Load effect of your choice by passing the asset file to it in `switchPreview`
 ```

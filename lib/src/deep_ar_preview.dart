@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'deep_ar_controller.dart';
 
 /// Displays live preview with desired effects.
@@ -18,13 +16,10 @@ class DeepArPreview extends StatefulWidget {
 class _DeepArPreviewState extends State<DeepArPreview> {
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: (1 / widget.deepArController.aspectRatio),
-      child: Platform.isAndroid
-          ? (widget.deepArController.isInitialized
-              ? _androidView()
-              : Container())
-          : _iOSView(),
+    return Center(
+      child: AspectRatio(
+          aspectRatio: (1 / widget.deepArController.aspectRatio),
+          child: Platform.isAndroid ? _androidView() : _iOSView()),
     );
   }
 
@@ -36,7 +31,10 @@ class _DeepArPreviewState extends State<DeepArPreview> {
   }
 
   Widget _androidView() {
-    widget.onViewCreated?.call();
-    return widget.deepArController.buildPreview();
+    WidgetsBinding.instance
+        .addPostFrameCallback((timeStamp) => widget.onViewCreated?.call());
+    return widget.deepArController.isInitialized
+        ? widget.deepArController.buildPreview()
+        : const SizedBox.shrink();
   }
 }
