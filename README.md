@@ -21,6 +21,7 @@ Once done, please add the latest `deepar_flutter` dependency to your pubspec.yam
  1. compileSdkVersion should be 33 or more.
  2. minSdkVersion should be 23 or more.
  3. Download the native android dependencies from our [downloads](https://developer.deepar.ai/downloads) section and paste it in your flutter project at `android/app/libs/deepar.aar`.
+ 4. Make sure to `pub clean` & `flutter pub upgrade` to fetch latest working code.
 
 Also add the following permission requests in your AndroidManifest.xml
 ```
@@ -43,6 +44,8 @@ Ensure to add these rules to `proguard-rules.pro` else app might crash in releas
 1. Ensure your app iOS deployment version is 13.0+.
 2. Do a flutter clean & install pods.
 3. To handle camera and microphone permissions, please add the following strings to your info.plist.
+4. Make sure to `pub clean` & `flutter pub upgrade` to fetch latest working code.
+
 ```
 <key>NSCameraUsageDescription</key>
 <string>---Reason----</string>
