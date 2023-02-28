@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'deepar_flutter'
-  s.version          = '0.0.5'
+  s.version          = '0.0.6'
   s.summary          = 'Offical Flutter SDK for DeepAR Plugin.'
   s.description      = <<-DESC
 Official Flutter SDK for DeepAR Plugin.
