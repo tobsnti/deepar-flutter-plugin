@@ -78,14 +78,15 @@ post_install do |installer|
 end
 ```
 
-**Run on iOS Simulator:**
+## Run on iOS Simulator:
 1. Download latest DeepAR SDK and copy `simulator/DeepAR.framework` **(IMPORTANT)** folder and paste it at `~/.pub-cache/hosted/pub.dartlang.org/deepar_flutter-<plugin-version>/ios` this will replace the `DeepAR.framework` already available at that path.
 2. Inside your iOS project on flutter side open `Podfile` and add `config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'` (Refer example app)
 3. Clean project/pub and install pods again.
 
-**VERY IMPORTANT IF YOU CONFIGURE FOR IOS SIMULATOR**
+## VERY IMPORTANT (incase testing with iOS Simulator)
 - If you had configured app to run on iOS simulator like above, when creating a release archive make sure to **clean pub-cache and download the default plugin code again** with already added `DeepAR.framework` this will ensure you are building the app against correct framework for real device.
 - OR simply copy `DeepAR.framework` from SDK `parent folder` and paste it at `~/.pub-cache/hosted/pub.dartlang.org/deepar_flutter-<plugin-version>/ios`
+
 
 **Flutter:**
 
