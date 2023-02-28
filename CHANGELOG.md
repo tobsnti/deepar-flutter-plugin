@@ -1,3 +1,7 @@
+## 0.0.6
+
+- Updated doc & example to run on iOS simulator.
+
 ## 0.0.5
 
 - Minor bug fixes.
