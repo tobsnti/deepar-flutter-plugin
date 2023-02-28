@@ -88,7 +88,7 @@ end
 - OR simply copy `DeepAR.framework` from SDK `parent folder` and paste it at `~/.pub-cache/hosted/pub.dartlang.org/deepar_flutter-<plugin-version>/ios`
 
 
-**Flutter:**
+## Flutter:
 
 1. Initialize  `DeepArController` by passing in your license keys for both platforms.
 ```
