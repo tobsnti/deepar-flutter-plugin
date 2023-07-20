@@ -273,6 +273,19 @@ class DeepArPlatformHandler {
     });
   }
 
+  Future<String?> backgroundReplacementAndroid(String? image) {
+    return _channel.invokeMethod<String>(PlatformStrings.backgroundReplacement, {
+      PlatformStrings.image: image,
+    });
+  }
+
+  Future<String?> backgroundReplacementIos(String? image, int view) {
+    return _avCameraChannel(view)
+        .invokeMethod<String>(PlatformStrings.backgroundReplacement, {
+      PlatformStrings.image: image,
+    });
+  }
+
   Future<void> fireTrigger(String trigger) {
     return _channel.invokeMethod("fireTrigger", {"trigger": trigger});
   }
