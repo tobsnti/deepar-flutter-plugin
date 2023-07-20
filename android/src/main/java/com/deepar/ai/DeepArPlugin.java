@@ -129,6 +129,34 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
                 }
                 break;
 
+            case MethodStrings.backgroundReplacement: // Background Replacement
+                String image = ((String) arguments.get("image"));
+                try {
+                    if (image == "") {
+                        deepAR.backgroundReplacement(false, "");
+                    } else {
+                        Bitmap backgroundImage = filePathToBitmap(image);
+                        deepAR.backgroundReplacement(true, backgroundImage);
+                    }
+                    result.success("backgroundReplacement called successfully");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    result.error("111", "backgroundReplacement failed", e.getMessage());
+                }
+                break;
+
+            case MethodStrings.backgroundBlur: // background Blur
+                Bool enable = ((Bool) arguments.get("enable"));
+                Int strength = ((Int) arguments.get("strength"));
+                try {
+                    deepAR.backgroundBlur(enable, strength);
+                    result.success("backgroundBlur called successfully");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    result.error("111", "backgroundBlur failed", e.getMessage());
+                }
+                break;
+
             case MethodStrings.startRecordingVideo:
                 try {
                     File file = File.createTempFile("deepar_", ".mp4");
@@ -481,5 +509,9 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
                 .getFlutterAssets()
                 .getAssetFilePathBySubpath(path != null ? path : "");
         return flutterPlugin.getApplicationContext().getAssets().open(assetPath);
+    }
+
+    private Bitmap filePathToBitmap(String filePath) {
+        return BitmapFactory.decodeFile(filePath);
     }
 }

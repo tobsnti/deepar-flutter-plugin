@@ -286,6 +286,21 @@ class DeepArPlatformHandler {
     });
   }
 
+  Future<String?> backgroundBlurAndroid(bool enable, int strength) {
+    return _channel.invokeMethod<String>(PlatformStrings.backgroundBlur, {
+      PlatformStrings.enable: enable,
+      PlatformStrings.strength: strength,
+    });
+  }
+
+  Future<String?> backgroundBlurIos(bool enable, int strength, int view) {
+    return _avCameraChannel(view)
+        .invokeMethod<String>(PlatformStrings.backgroundBlur, {
+      PlatformStrings.enable: enable,
+      PlatformStrings.strength: strength,
+    });
+  }
+
   Future<void> fireTrigger(String trigger) {
     return _channel.invokeMethod("fireTrigger", {"trigger": trigger});
   }

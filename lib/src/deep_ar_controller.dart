@@ -305,6 +305,15 @@ class DeepArController {
             _deepArPlatformHandler.backgroundReplacementIos(image, _textureId!));
   }
 
+  ///backgroundBlur
+  Future<String?> backgroundBlur(bool enable, int strength) {
+    return platformRun(
+        androidFunction: () =>
+            _deepArPlatformHandler.backgroundBlurAndroid(enable, strength),
+        iOSFunction: () =>
+            _deepArPlatformHandler.backgroundBlurIos(enable, strength, _textureId!));
+  }
+
   ///Fire named trigger of an fbx animation set on the currently loaded effect.
   Future<void> fireTrigger({required String trigger}) async {
     await platformRun(
