@@ -1,6 +1,6 @@
-This plugin is the official SDK for [DeepAR](http://deepar.ai). Platforms supported: Android & iOS. 
+Flutter plugin for [DeepAR](http://deepar.ai) SDK. Platforms supported: Android & iOS. 
 
-The current version of plugin supports: 
+The current version of the plugin supports: 
 - Live AR previews ✅ 
 - Take screenshots ✅ 
 - Record Videos ✅ 
@@ -20,10 +20,10 @@ Once done, please add the latest `deepar_flutter` dependency to your pubspec.yam
 **Android**: 
  1. compileSdkVersion should be 33 or more.
  2. minSdkVersion should be 23 or more.
- 3. Download the native android dependencies from our [downloads](https://developer.deepar.ai/downloads) section and paste it in your flutter project at `android/app/libs/deepar.aar`.
- 4. Make sure to `pub clean` & `flutter pub upgrade` to fetch latest working code.
+ 3. Download the native Android dependencies from our [downloads](https://developer.deepar.ai/downloads) section and paste it in your flutter project at `android/app/libs/deepar.aar`.
+ 4. Make sure to `pub clean` & `flutter pub upgrade` to fetch the latest working code.
 
-Also add the following permission requests in your AndroidManifest.xml
+Also, add the following permission requests in your AndroidManifest.xml
 ```
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"  />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -33,7 +33,7 @@ Also add the following permission requests in your AndroidManifest.xml
 ```
 
 
-Ensure to add these rules to `proguard-rules.pro` else app might crash in release build
+Ensure to add these rules to `proguard-rules.pro` otherwise the app might crash in the release build
 ```
 -keepclassmembers class ai.deepar.ar.DeepAR { *; }
 -keepclassmembers class ai.deepar.ar.core.videotexture.VideoTextureAndroidJava { *; }
@@ -41,10 +41,10 @@ Ensure to add these rules to `proguard-rules.pro` else app might crash in releas
 ``` 
 
 **iOS:**
-1. Ensure your app iOS deployment version is 13.0+.
+1. Ensure that your app's iOS deployment version is 13.0+.
 2. Do a flutter clean & install pods.
 3. To handle camera and microphone permissions, please add the following strings to your info.plist.
-4. Make sure to `pub clean` & `flutter pub upgrade` to fetch latest working code.
+4. Make sure to `pub clean` & `flutter pub upgrade` to fetch the latest working code.
 
 ```
 <key>NSCameraUsageDescription</key>
@@ -79,12 +79,12 @@ end
 ```
 
 ## Run on iOS Simulator:
-1. Download latest DeepAR SDK and copy `simulator/DeepAR.framework` **(IMPORTANT)** folder and paste it at `~/.pub-cache/hosted/pub.dartlang.org/deepar_flutter-<plugin-version>/ios` this will replace the `DeepAR.framework` already available at that path.
+1. Download the latest DeepAR SDK and copy `simulator/DeepAR.framework` **(IMPORTANT)** folder and paste it at `~/.pub-cache/hosted/pub.dartlang.org/deepar_flutter-<plugin-version>/ios` this will replace the `DeepAR.framework` already available at that path.
 2. Inside your iOS project on flutter side open `Podfile` and add `config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'` (Refer example app)
 3. Clean project/pub and install pods again.
 
-## VERY IMPORTANT (incase testing with iOS Simulator)
-- If you had configured app to run on iOS simulator like above, when creating a release archive make sure to **clean pub-cache and download the default plugin code again** with already added `DeepAR.framework` this will ensure you are building the app against correct framework for real device.
+## VERY IMPORTANT (in case testing with iOS Simulator)
+- If you had configured the app to run on an iOS simulator like above when creating a release archive make sure to **clean pub-cache and download the default plugin code again** with already added `DeepAR.framework` this will ensure you are building the app against the correct framework for real device.
 - OR simply copy `DeepAR.framework` from SDK `parent folder` and paste it at `~/.pub-cache/hosted/pub.dartlang.org/deepar_flutter-<plugin-version>/ios`
 
 
@@ -116,7 +116,7 @@ return  DeepArPreview(
 
 To display the preview in full screen, wrap `DeepArPreview` with `Transform.scale()` and use the correct scale factor as per preview area size. More info [here](https://github.com/DeepARSDK/deepar-flutter-plugin/issues/61#issuecomment-1331683622).
        
-3.  Load effect of your choice by passing the asset file to it in `switchPreview`
+3.  Load the effect of your choice by passing the asset file to it in `switchPreview`
 ```
 _controller.switchEffect(effect);
 ```
