@@ -123,7 +123,7 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
                     deepAR.switchEffect("effect", inputStream);
                     inputStream.close();
                     result.success("switchEffect called successfully");
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                     result.error("111", "switchEffect failed", e.getMessage());
                 }
@@ -132,26 +132,28 @@ public class DeepArPlugin implements FlutterPlugin, AREventListener, ActivityAwa
             case MethodStrings.backgroundReplacement: // Background Replacement
                 String image = ((String) arguments.get("image"));
                 try {
-                    if (image == "") {
-                        deepAR.backgroundReplacement(false, "");
+                    if (image.isEmpty()) {
+
+                        deepAR.backgroundReplacement(false, null);
                     } else {
                         Bitmap backgroundImage = filePathToBitmap(image);
                         deepAR.backgroundReplacement(true, backgroundImage);
+                        result.success("backgroundReplacement called successfully");
                     }
-                    result.success("backgroundReplacement called successfully");
-                } catch (IOException e) {
+
+                } catch (Exception e) {
                     e.printStackTrace();
                     result.error("111", "backgroundReplacement failed", e.getMessage());
                 }
                 break;
 
             case MethodStrings.backgroundBlur: // background Blur
-                Bool enable = ((Bool) arguments.get("enable"));
-                Int strength = ((Int) arguments.get("strength"));
+                boolean enable = ((boolean) arguments.get("enable"));
+                int strength = ((int) arguments.get("strength"));
                 try {
                     deepAR.backgroundBlur(enable, strength);
                     result.success("backgroundBlur called successfully");
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                     result.error("111", "backgroundBlur failed", e.getMessage());
                 }
